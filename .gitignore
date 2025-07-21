@@ -29,4 +29,7 @@ openapi-3.0.json
 
 # OS files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Environment variables
+.env
