@@ -1,135 +1,81 @@
-package thecompaniesapi_test
+package thecompaniesapi
 
 import (
 	"context"
 	"net/http"
 	"testing"
 	"time"
-	
-	"github.com/thecompaniesapi/sdk-go"
 )
 
-func TestNewClient(t *testing.T) {
-	apiKey := "test-api-key"
-	client := thecompaniesapi.NewClient(apiKey)
+func TestNewBaseClient(t *testing.T) {
+	client := NewBaseClient("test-api-key")
 
 	if client == nil {
-		t.Fatal("NewClient returned nil")
+		t.Fatal("NewBaseClient returned nil")
 	}
 
-	// Test default base URL
-	if client.BaseURL() != thecompaniesapi.DefaultBaseURL {
-		t.Errorf("Expected default base URL %s, got %s", thecompaniesapi.DefaultBaseURL, client.BaseURL())
+	if client.BaseURL() != DefaultBaseURL {
+		t.Errorf("Expected base URL %s, got %s", DefaultBaseURL, client.BaseURL())
 	}
 
-	// Test with options
-	customBaseURL := "https://custom-api.example.com"
-	client = thecompaniesapi.NewClient(apiKey,
-		thecompaniesapi.WithBaseURL(customBaseURL),
-		thecompaniesapi.WithTimeout(60*time.Second),
-	)
-
-	if client == nil {
-		t.Fatal("NewClient with options returned nil")
-	}
-
-	if client.BaseURL() != customBaseURL {
-		t.Errorf("Expected custom base URL %s, got %s", customBaseURL, client.BaseURL())
+	expectedTimeout := DefaultTimeout
+	if client.HTTPClient().Timeout != expectedTimeout {
+		t.Errorf("Expected timeout %v, got %v", expectedTimeout, client.HTTPClient().Timeout)
 	}
 }
 
-func TestClientConfiguration(t *testing.T) {
-	// Test custom base URL
-	customBaseURL := "https://test.api.com"
-	client := thecompaniesapi.NewClient("test-key",
-		thecompaniesapi.WithBaseURL(customBaseURL),
-	)
-	
-	if client == nil {
-		t.Error("Client should not be nil")
-	}
-
-	if client.BaseURL() != customBaseURL {
-		t.Errorf("Expected base URL %s, got %s", customBaseURL, client.BaseURL())
-	}
-
-	// Test custom timeout
-	client = thecompaniesapi.NewClient("test-key",
-		thecompaniesapi.WithTimeout(5*time.Second),
-	)
-	
-	if client == nil {
-		t.Error("Client should not be nil")
-	}
-
-	// Test custom HTTP client
+func TestBaseClientConfiguration(t *testing.T) {
+	customBaseURL := "https://custom-api.example.com"
+	customTimeout := 60 * time.Second
 	customHTTPClient := &http.Client{Timeout: 10 * time.Second}
-	client = thecompaniesapi.NewClient("test-key",
-		thecompaniesapi.WithHTTPClient(customHTTPClient),
-	)
-	
-	if client == nil {
-		t.Error("Client should not be nil")
-	}
+	customVisitorID := "test-visitor-123"
 
-	// Test visitor ID configuration
-	visitorID := "test-visitor-123"
-	client = thecompaniesapi.NewClient("test-key",
-		thecompaniesapi.WithVisitorID(visitorID),
+	client := NewBaseClient("test-api-key",
+		WithCustomBaseURL(customBaseURL),
+		WithTimeout(customTimeout),
+		WithCustomHTTPClient(customHTTPClient),
+		WithVisitorID(customVisitorID),
 	)
-	
-	if client == nil {
-		t.Error("Client should not be nil")
-	}
-
-	// Test multiple options together
-	client = thecompaniesapi.NewClient("test-key",
-		thecompaniesapi.WithBaseURL(customBaseURL),
-		thecompaniesapi.WithTimeout(60*time.Second),
-		thecompaniesapi.WithVisitorID(visitorID),
-	)
-	
-	if client == nil {
-		t.Error("Client should not be nil")
-	}
 
 	if client.BaseURL() != customBaseURL {
 		t.Errorf("Expected base URL %s, got %s", customBaseURL, client.BaseURL())
+	}
+
+	if client.HTTPClient() != customHTTPClient {
+		t.Errorf("Expected custom HTTP client, got different client")
 	}
 }
 
 func TestErrorType(t *testing.T) {
-	err := &thecompaniesapi.Error{
-		Code:    "TEST_ERROR",
+	err := &Error{
+		Code:    "test_error",
 		Message: "Test error message",
 		Details: "Additional details",
 	}
 
-	expected := "TEST_ERROR: Test error message (Additional details)"
+	expected := "test_error: Test error message (Additional details)"
 	if err.Error() != expected {
-		t.Errorf("Expected error string '%s', got '%s'", expected, err.Error())
+		t.Errorf("Expected error string %s, got %s", expected, err.Error())
 	}
 
-	// Test error without details
-	err2 := &thecompaniesapi.Error{
-		Code:    "SIMPLE_ERROR",
-		Message: "Simple error",
+	errWithoutDetails := &Error{
+		Code:    "test_error",
+		Message: "Test error message",
 	}
 
-	expected2 := "SIMPLE_ERROR: Simple error"
-	if err2.Error() != expected2 {
-		t.Errorf("Expected error string '%s', got '%s'", expected2, err2.Error())
+	expectedWithoutDetails := "test_error: Test error message"
+	if errWithoutDetails.Error() != expectedWithoutDetails {
+		t.Errorf("Expected error string %s, got %s", expectedWithoutDetails, errWithoutDetails.Error())
 	}
 }
 
 func TestMakeRequest(t *testing.T) {
-	client := thecompaniesapi.NewClient("test-api-key")
+	client := NewBaseClient("test-api-key")
 
-	// Test that MakeRequest method exists and can be called
-	// Note: This will fail without a real API key, but we're just testing the interface
+	// Test making a request (will fail with fake API key, but tests the method)
 	ctx := context.Background()
-	_, err := client.MakeRequest(ctx, "GET", "/v2/companies", nil)
-	
+	_, err := client.MakeRequest(ctx, "GET", "/v2/health", nil)
+
 	// We expect this to fail since we don't have a real API key,
 	// but it should fail with a proper error, not a panic
 	if err == nil {
@@ -140,27 +86,19 @@ func TestMakeRequest(t *testing.T) {
 }
 
 func TestConstants(t *testing.T) {
-	if thecompaniesapi.DefaultBaseURL == "" {
-		t.Error("DefaultBaseURL should not be empty")
-	}
-
-	if thecompaniesapi.DefaultTimeout == 0 {
-		t.Error("DefaultTimeout should not be zero")
-	}
-
 	expectedBaseURL := "https://api.thecompaniesapi.com"
-	if thecompaniesapi.DefaultBaseURL != expectedBaseURL {
-		t.Errorf("Expected DefaultBaseURL %s, got %s", expectedBaseURL, thecompaniesapi.DefaultBaseURL)
+	if DefaultBaseURL != expectedBaseURL {
+		t.Errorf("Expected DefaultBaseURL %s, got %s", expectedBaseURL, DefaultBaseURL)
 	}
 
 	expectedTimeout := 300 * time.Second
-	if thecompaniesapi.DefaultTimeout != expectedTimeout {
-		t.Errorf("Expected DefaultTimeout %v, got %v", expectedTimeout, thecompaniesapi.DefaultTimeout)
+	if DefaultTimeout != expectedTimeout {
+		t.Errorf("Expected DefaultTimeout %v, got %v", expectedTimeout, DefaultTimeout)
 	}
 }
 
 func TestBuildQueryString(t *testing.T) {
-	client := thecompaniesapi.NewClient("test-api-key")
+	client := NewBaseClient("test-api-key")
 
 	tests := []struct {
 		name     string
@@ -256,7 +194,7 @@ func TestBuildQueryString(t *testing.T) {
 }
 
 func TestMakeRequestWithQuery(t *testing.T) {
-	client := thecompaniesapi.NewClient("test-api-key")
+	client := NewBaseClient("test-api-key")
 
 	// Test that MakeRequestWithQuery method exists and handles query params
 	ctx := context.Background()
@@ -277,7 +215,7 @@ func TestMakeRequestWithQuery(t *testing.T) {
 }
 
 func TestQueryStringWithExistingParams(t *testing.T) {
-	client := thecompaniesapi.NewClient("test-api-key")
+	client := NewBaseClient("test-api-key")
 
 	// Test appending to path that already has query params
 	ctx := context.Background()

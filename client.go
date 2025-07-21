@@ -21,48 +21,48 @@ const (
 	DefaultTimeout = 300 * time.Second
 )
 
-// Client represents The Companies API client
-type Client struct {
+// BaseClient represents The Companies API client foundation
+type BaseClient struct {
 	baseURL    string
 	apiKey     string
 	httpClient *http.Client
 	visitorID  string // Added for visitor ID support
 }
 
-// ClientOption is a function type for configuring the client
-type ClientOption func(*Client)
+// BaseClientOption is a function type for configuring the client
+type BaseClientOption func(*BaseClient)
 
-// WithBaseURL sets a custom base URL for the client
-func WithBaseURL(baseURL string) ClientOption {
-	return func(c *Client) {
+// WithCustomBaseURL sets a custom base URL for the client
+func WithCustomBaseURL(baseURL string) BaseClientOption {
+	return func(c *BaseClient) {
 		c.baseURL = baseURL
 	}
 }
 
-// WithHTTPClient sets a custom HTTP client
-func WithHTTPClient(httpClient *http.Client) ClientOption {
-	return func(c *Client) {
+// WithCustomHTTPClient sets a custom HTTP client
+func WithCustomHTTPClient(httpClient *http.Client) BaseClientOption {
+	return func(c *BaseClient) {
 		c.httpClient = httpClient
 	}
 }
 
 // WithTimeout sets a custom timeout for HTTP requests
-func WithTimeout(timeout time.Duration) ClientOption {
-	return func(c *Client) {
+func WithTimeout(timeout time.Duration) BaseClientOption {
+	return func(c *BaseClient) {
 		c.httpClient.Timeout = timeout
 	}
 }
 
 // WithVisitorID sets a custom visitor ID for the client
-func WithVisitorID(visitorID string) ClientOption {
-	return func(c *Client) {
+func WithVisitorID(visitorID string) BaseClientOption {
+	return func(c *BaseClient) {
 		c.visitorID = visitorID
 	}
 }
 
-// NewClient creates a new Companies API client
-func NewClient(apiKey string, options ...ClientOption) *Client {
-	client := &Client{
+// NewBaseClient creates a new Companies API client
+func NewBaseClient(apiKey string, options ...BaseClientOption) *BaseClient {
+	client := &BaseClient{
 		baseURL: DefaultBaseURL,
 		apiKey:  apiKey,
 		httpClient: &http.Client{
@@ -94,7 +94,7 @@ func (e *Error) Error() string {
 // BuildQueryString serializes query parameters with the same logic as TypeScript SDK
 // - Objects and arrays are JSON stringified then URL encoded
 // - Primitives are converted to strings
-func (c *Client) BuildQueryString(params map[string]interface{}) string {
+func (c *BaseClient) BuildQueryString(params map[string]interface{}) string {
 	if len(params) == 0 {
 		return ""
 	}
@@ -181,7 +181,7 @@ func (c *Client) BuildQueryString(params map[string]interface{}) string {
 }
 
 // MakeRequestWithQuery performs an HTTP request with query parameters serialized using TypeScript SDK logic
-func (c *Client) MakeRequestWithQuery(ctx context.Context, method, path string, queryParams map[string]interface{}, body any) ([]byte, error) {
+func (c *BaseClient) MakeRequestWithQuery(ctx context.Context, method, path string, queryParams map[string]interface{}, body any) ([]byte, error) {
 	fullPath := path
 	if len(queryParams) > 0 {
 		queryString := c.BuildQueryString(queryParams)
@@ -198,7 +198,7 @@ func (c *Client) MakeRequestWithQuery(ctx context.Context, method, path string, 
 }
 
 // MakeRequest performs an HTTP request with authentication and returns the response body
-func (c *Client) MakeRequest(ctx context.Context, method, path string, body any) ([]byte, error) {
+func (c *BaseClient) MakeRequest(ctx context.Context, method, path string, body any) ([]byte, error) {
 	var reqBody io.Reader
 	if body != nil {
 		jsonBody, err := json.Marshal(body)
@@ -245,11 +245,11 @@ func (c *Client) MakeRequest(ctx context.Context, method, path string, body any)
 }
 
 // BaseURL returns the configured base URL
-func (c *Client) BaseURL() string {
+func (c *BaseClient) BaseURL() string {
 	return c.baseURL
 }
 
 // HTTPClient returns the underlying HTTP client
-func (c *Client) HTTPClient() *http.Client {
+func (c *BaseClient) HTTPClient() *http.Client {
 	return c.httpClient
 }
