@@ -1,0 +1,6 @@
+package: thecompaniesapi
+output: generated.go
+generate:
+  models: true
+  client: true
+  embedded-spec: true 
