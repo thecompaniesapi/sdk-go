@@ -17,12 +17,12 @@ fi
 echo "⬇️  Converting OpenAPI 3.1 to 3.0..."
 npx --yes @apiture/openapi-down-convert@latest --input openapi-3.1.json --output openapi-3.0.json
 
-echo "🔧 Generating Go models..."
-go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config oapi-codegen.yaml openapi-3.0.json > models.go
+echo "🔧 Generating Go client and models..."
+go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config oapi-codegen.yaml openapi-3.0.json
 
 echo "🧹 Cleaning up temporary files..."
 rm openapi-3.1.json openapi-3.0.json
 
-echo "✅ Successfully generated models.go with type definitions!"
-echo "💡 You can now use the generated types with your custom client implementation." 
+echo "✅ Successfully generated client and models!"
+echo "💡 The generated code includes both types and client methods." 
 
