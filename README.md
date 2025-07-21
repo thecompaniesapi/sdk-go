@@ -1,7 +1,5 @@
 # The Companies API SDK for Go
 
-[![GoDoc](https://godoc.org/github.com/thecompaniesapi/sdk-go?status.svg)](https://godoc.org/github.com/thecompaniesapi/sdk-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/thecompaniesapi/sdk-go)](https://goreportcard.com/report/github.com/thecompaniesapi/sdk-go)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A fully-featured Go SDK for [The Companies API](https://www.thecompaniesapi.com), providing type-safe access to company data, locations, industries, technologies, job titles, lists, and more.
