@@ -171,8 +171,8 @@ func (c *CompaniesAPIClient) FetchCompaniesInListPost(ctx context.Context, listI
 	return c.ClientWithResponses.FetchCompaniesInListPostWithResponse(ctx, listId, body)
 }
 
-func (c *CompaniesAPIClient) ListsToggleCompanies(ctx context.Context, listId float32, body ListsToggleCompaniesJSONRequestBody) (*ListsToggleCompaniesResponse, error) {
-	return c.ClientWithResponses.ListsToggleCompaniesWithResponse(ctx, listId, body)
+func (c *CompaniesAPIClient) ToggleCompaniesInList(ctx context.Context, listId float32, body ToggleCompaniesInListJSONRequestBody) (*ToggleCompaniesInListResponse, error) {
+	return c.ClientWithResponses.ToggleCompaniesInListWithResponse(ctx, listId, body)
 }
 
 func (c *CompaniesAPIClient) FetchCompanyInList(ctx context.Context, listId float32, domain string) (*FetchCompanyInListResponse, error) {
