@@ -577,7 +577,7 @@ meta := response.JSON200.Data.Meta           // Meta information
 ```go
 // Add companies to a list
 listId := float32(1234)
-response, err := client.ListsToggleCompanies(ctx, listId, tca.ListsToggleCompaniesJSONRequestBody{
+response, err := client.ToggleCompaniesInList(ctx, listId, tca.ToggleCompaniesInListJSONRequestBody{
     Companies: []string{"apple.com", "stripe.com"},
 })
 
