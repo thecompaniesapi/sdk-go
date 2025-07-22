@@ -80,7 +80,7 @@ func main() {
 
 ### Search companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/searchCompanies)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-companies)
 
 ```go
 // Search companies with basic filters
@@ -125,7 +125,7 @@ meta := response.JSON200.Meta          // Meta information
 
 ### Search companies by name
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/searchCompaniesByName)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-companies-name)
 
 ```go
 // Search companies by their name
@@ -139,7 +139,7 @@ companies := response.JSON200.Companies // Companies with matching names
 
 ### Search companies by prompt
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/searchCompaniesByPrompt)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-companies-prompt)
 
 ```go
 // Use natural language to find companies
@@ -153,7 +153,7 @@ companies := response.JSON200.Companies // Companies matching the prompt
 
 ### Find similar companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/searchSimilarCompanies)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-similar-companies)
 
 ```go
 // Find companies similar to given domains
@@ -167,7 +167,7 @@ companies := response.JSON200.Companies // Similar companies
 
 ### Count companies matching your query
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/countCompanies)
+📖 [Documentation](https://www.thecompaniesapi.com/api/count-companies)
 
 ```go
 // Count how many companies are in the computer-software industry
@@ -187,7 +187,7 @@ count := response.JSON200.Data // Number of companies that match the query
 
 ### Enrich a company from a domain name
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/fetchCompany)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-company-from-domain)
 
 ```go
 // Fetch company data from our database without enrichment (faster response)
@@ -208,7 +208,7 @@ company := response.JSON200.Data // The company profile (refreshed)
 
 ### Enrich a company from an email
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/fetchCompanyByEmail)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-company-from-email)
 
 🕹️ Enrich your users at signup with the latest information about their company
 
@@ -224,7 +224,7 @@ company := response.JSON200.Data // The company profile
 
 ### Enrich a company from a social network URL
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/fetchCompanyBySocial)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-company-from-social-network-url)
 
 ```go
 // Fetch the company profile behind a social network URL
@@ -238,7 +238,7 @@ company := response.JSON200.Data // The company profile
 
 ### Find a company email patterns
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/fetchCompanyEmailPatterns)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-company-email-patterns)
 
 ```go
 // Fetch the company email patterns for a specific domain
@@ -249,7 +249,7 @@ patterns := response.JSON200.Data // The company email patterns
 
 ### Ask a question about a company
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/askCompany)
+📖 [Documentation](https://www.thecompaniesapi.com/api/ask-company)
 
 ```go
 // Ask what products a company offers using its domain
@@ -271,7 +271,7 @@ meta := response.JSON200.Data.Meta     // Meta information
 
 ### Fetch the context of a company
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/fetchCompanyContext)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-company-context)
 
 ```go
 // Get AI-generated strategic insights about a company
@@ -283,7 +283,7 @@ meta := response.JSON200.Data.Meta       // Meta information
 
 ### Fetch analytics data for a query or your lists
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/fetchCompaniesAnalytics)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-companies-analytics)
 
 ```go
 // Analyze company distribution by business type
@@ -306,7 +306,7 @@ meta := response.JSON200.Data.Meta      // Meta information
 
 ### Export analytics data in multiple formats for a search
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Companies/operation/exportCompaniesAnalytics)
+📖 [Documentation](https://www.thecompaniesapi.com/api/export-companies-analytics)
 
 ```go
 // Export analytics to CSV
@@ -331,7 +331,7 @@ meta := response.JSON200.Data.Meta      // Meta information
 
 ### Request an action on one or more companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Actions/operation/requestAction)
+📖 [Documentation](https://www.thecompaniesapi.com/api/request-action)
 
 ```go
 // Request an enrichment job on multiple companies
@@ -348,7 +348,7 @@ meta := response.JSON200.Data.Meta       // Meta information
 
 ### Fetch the actions for your actions
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Actions/operation/fetchActions)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-actions)
 
 ```go
 // Fetch recent actions
@@ -370,7 +370,7 @@ meta := response.JSON200.Data.Meta       // Meta information
 
 ### Search industries
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Industries/operation/searchIndustries)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-industries)
 
 ```go
 // Search industries by keyword
@@ -388,7 +388,7 @@ meta := response.JSON200.Data.Meta             // Meta information
 
 ### Find similar industries
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Industries/operation/searchIndustriesSimilar)
+📖 [Documentation](https://www.thecompaniesapi.com/api/find-similar-industries)
 
 ```go
 // Find industries similar to given ones
@@ -405,7 +405,7 @@ meta := response.JSON200.Data.Meta          // Meta information
 
 ### Search technologies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Technologies/operation/searchTechnologies)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-technologies)
 
 ```go
 // Search technologies by keyword
@@ -425,7 +425,7 @@ meta := response.JSON200.Data.Meta                 // Meta information
 
 ### Search cities
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Locations/operation/searchCities)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-cities)
 
 ```go
 // Search cities by name
@@ -443,7 +443,7 @@ meta := response.JSON200.Data.Meta     // Meta information
 
 ### Search counties
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Locations/operation/searchCounties)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-counties)
 
 ```go
 // Search counties by name
@@ -461,7 +461,7 @@ meta := response.JSON200.Data.Meta         // Meta information
 
 ### Search states
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Locations/operation/searchStates)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-states)
 
 ```go
 // Search states by name
@@ -479,7 +479,7 @@ meta := response.JSON200.Data.Meta     // Meta information
 
 ### Search countries
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Locations/operation/searchCountries)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-countries)
 
 ```go
 // Search countries by name
@@ -497,7 +497,7 @@ meta := response.JSON200.Data.Meta           // Meta information
 
 ### Search continents
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Locations/operation/searchContinents)
+📖 [Documentation](https://www.thecompaniesapi.com/api/search-continents)
 
 ```go
 // Search continents by name
@@ -517,7 +517,7 @@ meta := response.JSON200.Data.Meta             // Meta information
 
 ### Enrich a job title from its name
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Job-titles/operation/enrichJobTitles)
+📖 [Documentation](https://www.thecompaniesapi.com/api/enrich-job-title-from-name)
 
 ```go
 // Enrich "chief marketing officer"
@@ -533,7 +533,7 @@ jobTitle := response.JSON200.Data // Contains department, seniority, etc.
 
 ### Fetch your lists
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Lists/operation/fetchLists)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-lists)
 
 ```go
 // Fetch your lists
@@ -545,7 +545,7 @@ meta := response.JSON200.Data.Meta   // Meta information
 
 ### Create a list of companies
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Lists/operation/createList)
+📖 [Documentation](https://www.thecompaniesapi.com/api/create-list)
 
 ```go
 // Create a list of companies
@@ -559,7 +559,7 @@ newList := response.JSON200.Data // The new list
 
 ### Fetch companies in your list
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Lists/operation/fetchCompaniesInList)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-companies-in-list)
 
 ```go
 // Fetch companies in a list
@@ -572,7 +572,7 @@ meta := response.JSON200.Data.Meta           // Meta information
 
 ### Add or remove companies in your list
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Lists/operation/listsToggleCompanies)
+📖 [Documentation](https://www.thecompaniesapi.com/api/toggle-companies-in-list)
 
 ```go
 // Add companies to a list
@@ -588,7 +588,7 @@ list := response.JSON200.Data // The updated list
 
 ### Fetch your team
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Teams/operation/fetchTeam)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-team)
 
 ```go
 // Fetch your team details
@@ -602,7 +602,7 @@ team := response.JSON200.Data // Your team details
 
 ### Fetch the health of the API
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Utilities/operation/fetchApiHealth)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-api-health)
 
 ```go
 // Check API health status
@@ -613,7 +613,7 @@ health := response.JSON200.Data // The health of the API
 
 ### Fetch the OpenAPI schema
 
-📖 [Documentation](https://www.thecompaniesapi.com/api#tag/Utilities/operation/fetchOpenApi)
+📖 [Documentation](https://www.thecompaniesapi.com/api/fetch-openapi)
 
 ```go
 // Fetch OpenAPI schema
