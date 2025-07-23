@@ -11,7 +11,7 @@ import (
 
 // Example_basicUsage demonstrates basic SDK usage
 func Example_basicUsage() {
-	// Initialize client with TypeScript SDK-matching behavior
+	// Initialize client
 	client, err := thecompaniesapi.ApiClient("your-api-key",
 		thecompaniesapi.WithVisitorID("demo-visitor-123"), // Analytics tracking
 		thecompaniesapi.WithTimeout(60*time.Second),       // Custom timeout
@@ -22,7 +22,7 @@ func Example_basicUsage() {
 
 	ctx := context.Background()
 
-	// Example 1: Search companies with complex query (matches TypeScript SDK exactly)
+	// Example 1: Search companies with complex query
 	searchExample(ctx, client)
 
 	// Example 2: Count companies 
@@ -87,7 +87,7 @@ func searchExample(ctx context.Context, client *thecompaniesapi.CompaniesAPIClie
 		SearchFields: &searchFields,
 	}
 
-	// Call with sophisticated query serialization (matches TypeScript SDK)
+	// Call with sophisticated query serialization
 	response, err := client.SearchCompanies(ctx, params)
 	if err != nil {
 		log.Printf("Search failed: %v", err)

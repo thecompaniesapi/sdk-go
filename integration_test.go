@@ -330,7 +330,7 @@ func TestIntegration_QuerySerialization(t *testing.T) {
 		t.Logf("Complex query returned %d companies", len(response.JSON200.Companies))
 		
 		// This test verifies that our query serialization works correctly
-		// with complex nested parameters matching TypeScript SDK behavior
+		// with complex nested parameters
 	})
 }
 

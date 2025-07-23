@@ -17,7 +17,7 @@ import (
 const (
 	// DefaultBaseURL is the default base URL for The Companies API
 	DefaultBaseURL = "https://api.thecompaniesapi.com"
-	// DefaultTimeout is the default timeout for HTTP requests (matches TypeScript SDK)
+	// DefaultTimeout is the default timeout for HTTP requests
 	DefaultTimeout = 300 * time.Second
 )
 
@@ -91,7 +91,7 @@ func (e *Error) Error() string {
 	return fmt.Sprintf("%s: %s", e.Code, e.Message)
 }
 
-// BuildQueryString serializes query parameters with the same logic as TypeScript SDK
+// BuildQueryString serializes query parameters
 // - Objects and arrays are JSON stringified then URL encoded
 // - Primitives are converted to strings
 func (c *BaseClient) BuildQueryString(params map[string]interface{}) string {
@@ -113,7 +113,7 @@ func (c *BaseClient) BuildQueryString(params map[string]interface{}) string {
 		v := reflect.ValueOf(value)
 		switch v.Kind() {
 		case reflect.Struct, reflect.Map, reflect.Slice, reflect.Array:
-			// Objects and arrays: JSON stringify then URL encode (matches TypeScript)
+			// Objects and arrays: JSON stringify then URL encode
 			jsonBytes, err := json.Marshal(value)
 			if err != nil {
 				// Fallback to string representation
@@ -180,7 +180,7 @@ func (c *BaseClient) BuildQueryString(params map[string]interface{}) string {
 	return strings.Join(parts, "&")
 }
 
-// MakeRequestWithQuery performs an HTTP request with query parameters serialized using TypeScript SDK logic
+// MakeRequestWithQuery performs an HTTP request with query parameters serialized
 func (c *BaseClient) MakeRequestWithQuery(ctx context.Context, method, path string, queryParams map[string]interface{}, body any) ([]byte, error) {
 	fullPath := path
 	if len(queryParams) > 0 {
