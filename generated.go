@@ -1346,13 +1346,13 @@ type Action struct {
 	UpdatedAt *string      `json:"updatedAt"`
 }
 
-// ActionDataFieldsType defines model for Action.Data.Fields.Type.
+// ActionDataFieldsType defines model for Action.Fields.Type.
 type ActionDataFieldsType string
 
-// ActionDataJob defines model for Action.Data.Job.
+// ActionDataJob defines model for Action.Job.
 type ActionDataJob string
 
-// ActionDataModel defines model for Action.Data.Model.
+// ActionDataModel defines model for Action.Model.
 type ActionDataModel string
 
 // ActionStatus defines model for Action.Status.
@@ -3774,7 +3774,7 @@ type PromptResponse1 struct {
 // PromptResponse1ActionCost defines model for Prompt.Response.1.Action.Cost.
 type PromptResponse1ActionCost float32
 
-// PromptResponse1ActionDataJob defines model for Prompt.Response.1.Action.Data.Job.
+// PromptResponse1ActionDataJob defines model for Prompt.Response.1.Action.Job.
 type PromptResponse1ActionDataJob string
 
 // PromptResponse1ActionStatus defines model for Prompt.Response.1.Action.Status.

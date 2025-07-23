@@ -182,7 +182,7 @@ response, err := client.CountCompaniesPost(ctx, tca.CountCompaniesPostJSONReques
     },
 })
 
-count := response.JSON200.Data // Number of companies that match the query
+count := response.JSON200 // Number of companies that match the query
 ```
 
 ### Enrich a company from a domain name
@@ -193,7 +193,7 @@ count := response.JSON200.Data // Number of companies that match the query
 // Fetch company data from our database without enrichment (faster response)
 response, err := client.FetchCompany(ctx, "microsoft.com", &tca.FetchCompanyParams{})
 
-company := response.JSON200.Data // The company profile
+company := response.JSON200 // The company profile
 ```
 
 ```go
@@ -203,7 +203,7 @@ response, err := client.FetchCompany(ctx, "microsoft.com", &tca.FetchCompanyPara
     Refresh: &refresh,
 })
 
-company := response.JSON200.Data // The company profile (refreshed)
+company := response.JSON200 // The company profile (refreshed)
 ```
 
 ### Enrich a company from an email
@@ -219,7 +219,7 @@ response, err := client.FetchCompanyByEmail(ctx, &tca.FetchCompanyByEmailParams{
     Email: &email,
 })
 
-company := response.JSON200.Data // The company profile
+company := response.JSON200 // The company profile
 ```
 
 ### Enrich a company from a social network URL
@@ -233,7 +233,7 @@ response, err := client.FetchCompanyBySocial(ctx, &tca.FetchCompanyBySocialParam
     Linkedin: &linkedin,
 })
 
-company := response.JSON200.Data // The company profile
+company := response.JSON200 // The company profile
 ```
 
 ### Find a company email patterns
@@ -244,7 +244,7 @@ company := response.JSON200.Data // The company profile
 // Fetch the company email patterns for a specific domain
 response, err := client.FetchCompanyEmailPatterns(ctx, "apple.com", &tca.FetchCompanyEmailPatternsParams{})
 
-patterns := response.JSON200.Data // The company email patterns
+patterns := response.JSON200 // The company email patterns
 ```
 
 ### Ask a question about a company
@@ -265,8 +265,8 @@ response, err := client.AskCompany(ctx, "microsoft.com", tca.AskCompanyJSONReque
     },
 })
 
-answer := response.JSON200.Data.Answer // Structured AI response
-meta := response.JSON200.Data.Meta     // Meta information
+answer := response.JSON200.Answer // Structured AI response
+meta := response.JSON200.Meta     // Meta information
 ```
 
 ### Fetch the context of a company
@@ -277,8 +277,8 @@ meta := response.JSON200.Data.Meta     // Meta information
 // Get AI-generated strategic insights about a company
 response, err := client.FetchCompanyContext(ctx, "microsoft.com")
 
-context := response.JSON200.Data.Context // Includes market, model, differentiators, etc.
-meta := response.JSON200.Data.Meta       // Meta information
+context := response.JSON200.Context // Includes market, model, differentiators, etc.
+meta := response.JSON200.Meta       // Meta information
 ```
 
 ### Fetch analytics data for a query or your lists
@@ -300,8 +300,8 @@ response, err := client.FetchCompaniesAnalytics(ctx, &tca.FetchCompaniesAnalytic
     },
 })
 
-analytics := response.JSON200.Data.Data // Aggregated values
-meta := response.JSON200.Data.Meta      // Meta information
+analytics := response.JSON200 // Aggregated values
+meta := response.JSON200.Meta      // Meta information
 ```
 
 ### Export analytics data in multiple formats for a search
@@ -323,8 +323,8 @@ response, err := client.ExportCompaniesAnalytics(ctx, tca.ExportCompaniesAnalyti
     },
 })
 
-analytics := response.JSON200.Data.Data // Aggregated values
-meta := response.JSON200.Data.Meta      // Meta information
+analytics := response.JSON200 // Aggregated values
+meta := response.JSON200.Meta      // Meta information
 ```
 
 ## 🎯 Actions
@@ -342,8 +342,8 @@ response, err := client.RequestAction(ctx, tca.RequestActionJSONRequestBody{
     Estimate: &estimate,
 })
 
-actions := response.JSON200.Data.Actions // Track this via FetchActions
-meta := response.JSON200.Data.Meta       // Meta information
+actions := response.JSON200.Actions // Track this via FetchActions
+meta := response.JSON200.Meta       // Meta information
 ```
 
 ### Fetch the actions for your actions
@@ -362,8 +362,8 @@ response, err := client.FetchActions(ctx, &tca.FetchActionsParams{
     Size:   &size,
 })
 
-actions := response.JSON200.Data.Actions // Actions that match the query
-meta := response.JSON200.Data.Meta       // Meta information
+actions := response.JSON200.Actions // Actions that match the query
+meta := response.JSON200.Meta       // Meta information
 ```
 
 ## 🏭 Industries
@@ -382,8 +382,8 @@ response, err := client.SearchIndustries(ctx, &tca.SearchIndustriesParams{
     Size:   &size,
 })
 
-industries := response.JSON200.Data.Industries // Industries that match the keyword
-meta := response.JSON200.Data.Meta             // Meta information
+industries := response.JSON200.Industries // Industries that match the keyword
+meta := response.JSON200.Meta             // Meta information
 ```
 
 ### Find similar industries
@@ -397,8 +397,8 @@ response, err := client.SearchIndustriesSimilar(ctx, &tca.SearchIndustriesSimila
     Industries: &industries,
 })
 
-similar := response.JSON200.Data.Industries // Industries that are similar to the given ones
-meta := response.JSON200.Data.Meta          // Meta information
+similar := response.JSON200.Industries // Industries that are similar to the given ones
+meta := response.JSON200.Meta          // Meta information
 ```
 
 ## ⚛️ Technologies
@@ -417,8 +417,8 @@ response, err := client.SearchTechnologies(ctx, &tca.SearchTechnologiesParams{
     Size:   &size,
 })
 
-technologies := response.JSON200.Data.Technologies // Technologies that match the keyword
-meta := response.JSON200.Data.Meta                 // Meta information
+technologies := response.JSON200.Technologies // Technologies that match the keyword
+meta := response.JSON200.Meta                 // Meta information
 ```
 
 ## 🌍 Locations
@@ -437,8 +437,8 @@ response, err := client.SearchCities(ctx, &tca.SearchCitiesParams{
     Size:   &size,
 })
 
-cities := response.JSON200.Data.Cities // Cities that match the name
-meta := response.JSON200.Data.Meta     // Meta information
+cities := response.JSON200.Cities // Cities that match the name
+meta := response.JSON200.Meta     // Meta information
 ```
 
 ### Search counties
@@ -455,8 +455,8 @@ response, err := client.SearchCounties(ctx, &tca.SearchCountiesParams{
     Size:   &size,
 })
 
-counties := response.JSON200.Data.Counties // Counties that match the name
-meta := response.JSON200.Data.Meta         // Meta information
+counties := response.JSON200.Counties // Counties that match the name
+meta := response.JSON200.Meta         // Meta information
 ```
 
 ### Search states
@@ -473,8 +473,8 @@ response, err := client.SearchStates(ctx, &tca.SearchStatesParams{
     Size:   &size,
 })
 
-states := response.JSON200.Data.States // States that match the name
-meta := response.JSON200.Data.Meta     // Meta information
+states := response.JSON200.States // States that match the name
+meta := response.JSON200.Meta     // Meta information
 ```
 
 ### Search countries
@@ -491,8 +491,8 @@ response, err := client.SearchCountries(ctx, &tca.SearchCountriesParams{
     Size:   &size,
 })
 
-countries := response.JSON200.Data.Countries // Countries that match the name
-meta := response.JSON200.Data.Meta           // Meta information
+countries := response.JSON200.Countries // Countries that match the name
+meta := response.JSON200.Meta           // Meta information
 ```
 
 ### Search continents
@@ -509,8 +509,8 @@ response, err := client.SearchContinents(ctx, &tca.SearchContinentsParams{
     Size:   &size,
 })
 
-continents := response.JSON200.Data.Continents // Continents that match the name
-meta := response.JSON200.Data.Meta             // Meta information
+continents := response.JSON200.Continents // Continents that match the name
+meta := response.JSON200.Meta             // Meta information
 ```
 
 ## 💼 Job titles
@@ -526,7 +526,7 @@ response, err := client.EnrichJobTitles(ctx, &tca.EnrichJobTitlesParams{
     Name: &name,
 })
 
-jobTitle := response.JSON200.Data // Contains department, seniority, etc.
+jobTitle := response.JSON200 // Contains department, seniority, etc.
 ```
 
 ## 📋 Lists
@@ -539,8 +539,8 @@ jobTitle := response.JSON200.Data // Contains department, seniority, etc.
 // Fetch your lists
 response, err := client.FetchLists(ctx, &tca.FetchListsParams{})
 
-lists := response.JSON200.Data.Lists // Lists that match the query
-meta := response.JSON200.Data.Meta   // Meta information
+lists := response.JSON200.Lists // Lists that match the query
+meta := response.JSON200.Meta   // Meta information
 ```
 
 ### Create a list of companies
@@ -554,7 +554,7 @@ response, err := client.CreateList(ctx, tca.CreateListJSONRequestBody{
     Type: "companies",
 })
 
-newList := response.JSON200.Data // The new list
+newList := response.JSON200 // The new list
 ```
 
 ### Fetch companies in your list
@@ -566,8 +566,8 @@ newList := response.JSON200.Data // The new list
 listId := float32(1234)
 response, err := client.FetchCompaniesInList(ctx, listId, &tca.FetchCompaniesInListParams{})
 
-companies := response.JSON200.Data.Companies // Companies that match the list
-meta := response.JSON200.Data.Meta           // Meta information
+companies := response.JSON200.Companies // Companies that match the list
+meta := response.JSON200.Meta           // Meta information
 ```
 
 ### Add or remove companies in your list
@@ -581,7 +581,7 @@ response, err := client.ToggleCompaniesInList(ctx, listId, tca.ToggleCompaniesIn
     Companies: []string{"apple.com", "stripe.com"},
 })
 
-list := response.JSON200.Data // The updated list
+list := response.JSON200 // The updated list
 ```
 
 ## 👥 Teams
@@ -595,7 +595,7 @@ list := response.JSON200.Data // The updated list
 teamId := float32(1234)
 response, err := client.FetchTeam(ctx, teamId)
 
-team := response.JSON200.Data // Your team details
+team := response.JSON200 // Your team details
 ```
 
 ## 🔧 Utilities
@@ -608,7 +608,7 @@ team := response.JSON200.Data // Your team details
 // Check API health status
 response, err := client.FetchApiHealth(ctx)
 
-health := response.JSON200.Data // The health of the API
+health := response.JSON200 // The health of the API
 ```
 
 ### Fetch the OpenAPI schema

@@ -23,7 +23,7 @@ func ApiClient(apiKey string, options ...BaseClientOption) (*CompaniesAPIClient,
 		baseClient.BaseURL(),
 		WithHTTPClient(baseClient.HTTPClient()),
 		WithRequestEditorFn(func(ctx context.Context, req *http.Request) error {
-			req.Header.Set("X-API-KEY", apiKey)
+			req.Header.Set("Authorization", "Basic "+apiKey)
 			return nil
 		}),
 	)
